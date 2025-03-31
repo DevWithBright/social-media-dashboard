@@ -1,69 +1,72 @@
-# Welcome to your Lovable project
+#Social Media Dashboard
 
-## Project info
 
-**URL**: https://lovable.dev/projects/26a48596-2cb4-461d-9687-4527eccaa38b
 
-## How can I edit this code?
+#🚀 Overview
 
-There are several ways of editing your application.
+The Social Media Dashboard is a web application that centralizes social media management, providing analytics, scheduling, and engagement tracking in one intuitive interface.
 
-**Use Lovable**
+#🌟 Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/26a48596-2cb4-461d-9687-4527eccaa38b) and start prompting.
+📊 Analytics & Insights: Track engagement, follower growth, and post performance.
 
-Changes made via Lovable will be committed automatically to this repo.
+📅 Post Scheduling: Plan and automate posts across multiple platforms.
 
-**Use your preferred IDE**
+🔗 Multi-Platform Integration: Manage various social media accounts in one place.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+👥 User Management: Assign roles and permissions to team members.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+🎨 Dark/Light Mode: Customize your dashboard appearance.
 
-Follow these steps:
+#🛠 Tech Stack
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Frontend: React (Vite), Tailwind CSS
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Backend: Node.js, Express
 
-# Step 3: Install the necessary dependencies.
-npm i
+Database: MongoDB
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+Authentication: Firebase/Auth0
+
+Deployment: Vercel (Frontend), Render (Backend)
+
+#📥 Installation
+
+Clone the repository:
+
+git clone https://github.com/yourusername/social-media-dashboard.git
+cd social-media-dashboard
+
+Install dependencies:
+
+npm install
+
+Set up environment variables in a .env file.
+
+Start the development server:
+
 npm run dev
-```
 
-**Edit a file directly in GitHub**
+#🤝 Contributing
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Contributions are welcome! Follow these steps:
 
-**Use GitHub Codespaces**
+Fork the repository.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Create a new branch: git checkout -b feature-name.
 
-## What technologies are used for this project?
+Commit changes: git commit -m 'Add feature-name'.
 
-This project is built with .
+Push to the branch: git push origin feature-name.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Open a pull request.
 
-## How can I deploy this project?
+#📜 License
 
-Simply open [Lovable](https://lovable.dev/projects/26a48596-2cb4-461d-9687-4527eccaa38b) and click on Share -> Publish.
+This project is licensed under the MIT License.
 
-## I want to use a custom domain - is that possible?
+#📬 Contact
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+For questions or collaborations, reach out at brightlawrence2@yahoo.com.
+
+⭐ If you like this project, consider giving it a star on GitHub! 🚀
