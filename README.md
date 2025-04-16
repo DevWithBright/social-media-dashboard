@@ -34,7 +34,7 @@ Deployment: Vercel (Frontend), Render (Backend)
 
 Clone the repository:
 
-git clone https://github.com/yourusername/social-media-dashboard.git
+git clone https://github.com/DevWithBright/social-media-dashboard.git
 cd social-media-dashboard
 
 Install dependencies:
