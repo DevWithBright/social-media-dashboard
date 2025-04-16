@@ -1,38 +1,13 @@
-
 import DashboardLayout from "@/components/DashboardLayout";
+import { CreatePostDialog } from "@/components/posts/CreatePostDialog";
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import { 
-  Card, 
-  CardContent, 
-  CardDescription, 
-  CardHeader, 
-  CardTitle 
-} from "@/components/ui/card";
-import { 
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { 
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from "@/components/ui/select";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { format } from "date-fns";
-import { Calendar as CalendarIcon, Plus, Instagram, Twitter, Facebook, Linkedin } from "lucide-react";
+import { Plus, Instagram, Twitter, Facebook, Linkedin, Pencil, Trash2 } from "lucide-react";
 import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
-// Mock scheduled posts
 const scheduledPosts = [
   {
     id: 1,
@@ -102,10 +77,35 @@ const getPlatformIcon = (platform: string) => {
 const ContentCalendarPage = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [view, setView] = useState("month");
+  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
+  const [editingPost, setEditingPost] = useState<typeof scheduledPosts[0] | null>(null);
+  const { toast } = useToast();
   
   const upcomingPosts = scheduledPosts.filter(post => post.status === "scheduled");
   const publishedPosts = scheduledPosts.filter(post => post.status === "published");
-  
+
+  const handleCreatePost = (data: any) => {
+    toast({
+      title: "Post scheduled",
+      description: "Your post has been scheduled successfully.",
+    });
+  };
+
+  const handleEditPost = (data: any) => {
+    toast({
+      title: "Post updated",
+      description: "Your post has been updated successfully.",
+    });
+    setEditingPost(null);
+  };
+
+  const handleDeletePost = (postId: number) => {
+    toast({
+      title: "Post deleted",
+      description: "Your post has been deleted successfully.",
+    });
+  };
+
   return (
     <DashboardLayout>
       <div className="flex flex-col gap-6">
@@ -116,13 +116,12 @@ const ContentCalendarPage = () => {
               Plan and schedule your social media posts.
             </p>
           </div>
-          <Button>
+          <Button onClick={() => setIsCreateDialogOpen(true)}>
             <Plus className="mr-2 h-4 w-4" /> Create Post
           </Button>
         </div>
         
         <div className="grid gap-6 md:grid-cols-12">
-          {/* Calendar Section */}
           <Card className="md:col-span-8">
             <CardHeader>
               <CardTitle>Calendar View</CardTitle>
@@ -181,7 +180,6 @@ const ContentCalendarPage = () => {
             </CardContent>
           </Card>
           
-          {/* Upcoming Posts Section */}
           <Card className="md:col-span-4">
             <CardHeader>
               <CardTitle>Upcoming Posts</CardTitle>
@@ -212,7 +210,6 @@ const ContentCalendarPage = () => {
             </CardContent>
           </Card>
           
-          {/* Posts List Section */}
           <Card className="md:col-span-12">
             <CardHeader>
               <CardTitle>All Posts</CardTitle>
@@ -241,13 +238,27 @@ const ContentCalendarPage = () => {
                       </div>
                     </div>
                     <div className="flex space-x-2">
-                      <Button variant="outline" size="sm">Edit</Button>
-                      <Button variant="ghost" size="sm">Delete</Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setEditingPost(post)}
+                      >
+                        <Pencil className="h-4 w-4 mr-1" />
+                        Edit
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleDeletePost(post.id)}
+                      >
+                        <Trash2 className="h-4 w-4 mr-1" />
+                        Delete
+                      </Button>
                     </div>
                   </div>
                 ))}
               </TabsContent>
-              
+
               <TabsContent value="published" className="space-y-4">
                 {publishedPosts.map((post) => (
                   <div key={post.id} className="flex items-center justify-between p-4 border rounded-lg">
@@ -275,6 +286,16 @@ const ContentCalendarPage = () => {
           </Card>
         </div>
       </div>
+
+      <CreatePostDialog
+        isOpen={isCreateDialogOpen || !!editingPost}
+        onOpenChange={(open) => {
+          setIsCreateDialogOpen(open);
+          if (!open) setEditingPost(null);
+        }}
+        existingPost={editingPost || undefined}
+        onSubmit={editingPost ? handleEditPost : handleCreatePost}
+      />
     </DashboardLayout>
   );
 };
